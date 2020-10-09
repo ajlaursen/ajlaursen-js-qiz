@@ -8,7 +8,8 @@ var nextButton = document.getElementById("next-button");
 var highScoreButton = document.getElementById("high-score");
 var everything = document.getElementById("everything");
 var timerDisp = document.getElementById("timer");
-var score = 0;
+var pageLocked = false;
+var score = -1;
 var indexQuestions = 0;
 var count = 60;
 // var answersEl = [ answer1Disp, answer2Disp, answer3Disp, answer4Disp];
@@ -63,29 +64,30 @@ var questions = [
   },
 ];
 
-answer1Disp.onclick = function () {
-  console.log(event.target);
+answer1Disp.onclick = function () {  
   answerClicked = answer1Disp;
   confirmAnswer("a1", indexQuestions);
 };
-answer2Disp.onclick = function () {
-  console.log(event.target);
+answer2Disp.onclick = function () {  
   answerClicked = answer2Disp;
   confirmAnswer("a2", indexQuestions);
 };
-answer3Disp.onclick = function () {
-  console.log(event.target);
+answer3Disp.onclick = function () {  
   answerClicked = answer3Disp;
   confirmAnswer("a3", indexQuestions);
 };
-answer4Disp.onclick = function () {
-  console.log(event.target);
+answer4Disp.onclick = function () {  
   answerClicked = answer4Disp;
-  console.log(answerClicked);
   confirmAnswer("a4", indexQuestions);
 };
 
 function confirmAnswer(answer, index) {
+  if (pageLocked === true){
+    console.log("page is already locked. aborting");
+    return;
+  }
+  pageLocked = true;
+  console.log("page was not locked executing function");
   var isCorrrect = questions[index].correct === answer;
   if (isCorrrect === true) {
     // if true we change the background color to green
@@ -121,17 +123,24 @@ function confirmAnswer(answer, index) {
     newButton.className = "btn btn-dark";
     highScoreButton.innerHTML = "";
     highScoreButton.append(newButton);
+    timerDisp = count;
   }
 }
 
 nextButton.onclick = function () {
+  pageLocked = false;
   questionDisp.textContent = questions[indexQuestions].q;
   answer1Disp.textContent = questions[indexQuestions].a1;
   answer2Disp.textContent = questions[indexQuestions].a2;
   answer3Disp.textContent = questions[indexQuestions].a3;
   answer4Disp.textContent = questions[indexQuestions].a4;
   nextButton.innerHTML = "";
-  answerClicked.classList.remove("correct", "wrong");
+  answer1Disp.classList.remove("correct", "wrong");
+  answer2Disp.classList.remove("correct", "wrong");
+  answer3Disp.classList.remove("correct", "wrong");
+  answer4Disp.classList.remove("correct", "wrong");
+  // answerClicked.classList.remove("correct", "wrong");
+  
     if(indexQuestions === 1){
             timer = setInterval(function () {
             timerDisp.innerHTML = "Timer: " + count--;
@@ -139,10 +148,12 @@ nextButton.onclick = function () {
             }, 1000);
         }
 };
-
+var intials = "";
 highScoreButton.onclick = function () {
+  intials = prompt("Enter your intials to be added to the leader board");
   everything.textContent = "";
   timerDisp.textContent = count;
+
 };
 
 
@@ -155,4 +166,5 @@ highScoreButton.onclick = function () {
 // DONE create function to update score display
 // DONE create button to move to next question and reset car BG to default
 // once all questions are answered create score list that shows user scores from all previous attempts
-// create timer that starts on start click
+//  DONE create timer that starts on start click
+// create stop function for timer
