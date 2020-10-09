@@ -6,22 +6,21 @@ var answer4Disp = document.getElementById("answer-4");
 var scoreDisp = document.getElementById("score");
 var nextButton = document.getElementById("next-button");
 var highScoreButton = document.getElementById("high-score");
+var newGameButton = document.getElementById("new-game");
 var everything = document.getElementById("everything");
 var timerDisp = document.getElementById("timer");
+var answerClicked = null;
 var pageLocked = false;
 var score = -1;
 var indexQuestions = 0;
 var count = 60;
-// var answersEl = [ answer1Disp, answer2Disp, answer3Disp, answer4Disp];
+var scoreArray = [];
 var questions = [
   {
-    q:
-      "Welcome to this JavaScrip quiz please read all of the instructions and have fun!",
-    a1:
-      "In this quiz you will be asked multiple questions to test your knowledge of JavaScript",
+    q: "Welcome to this JavaScrip quiz please read all of the instructions and have fun!",
+    a1: "In this quiz you will be asked multiple questions to test your knowledge of JavaScript",
     a2: "This quiz will track you score in the bottom left hand corner",
-    a3:
-      "Your score will be tracked to a leader board so you can come back and see your improvement",
+    a3: "Your score will be tracked to a leader board so you can come back and see your improvement",
     a4: "When you are ready click this box to proceed!",
     correct: "a4",
     type: "intro",
@@ -64,52 +63,38 @@ var questions = [
   },
 ];
 
-answer1Disp.onclick = function () {  
-  answerClicked = answer1Disp;
-  confirmAnswer("a1", indexQuestions);
+answer1Disp.onclick = function () {
+  confirmAnswer("a1", indexQuestions, answer1Disp);
 };
-answer2Disp.onclick = function () {  
-  answerClicked = answer2Disp;
-  confirmAnswer("a2", indexQuestions);
+answer2Disp.onclick = function () {
+  confirmAnswer("a2", indexQuestions, answer2Disp);
 };
-answer3Disp.onclick = function () {  
-  answerClicked = answer3Disp;
-  confirmAnswer("a3", indexQuestions);
+answer3Disp.onclick = function () {
+  confirmAnswer("a3", indexQuestions, answer3Disp);
 };
-answer4Disp.onclick = function () {  
-  answerClicked = answer4Disp;
-  confirmAnswer("a4", indexQuestions);
+answer4Disp.onclick = function () {
+  confirmAnswer("a4", indexQuestions, answer4Disp);
 };
 
-function confirmAnswer(answer, index) {
-  if (pageLocked === true){
+function confirmAnswer(answer, index, clicked) {
+  if (pageLocked === true) {
     console.log("page is already locked. aborting");
     return;
   }
   pageLocked = true;
+  answerClicked = clicked;
   console.log("page was not locked executing function");
   var isCorrrect = questions[index].correct === answer;
   if (isCorrrect === true) {
-    // if true we change the background color to green
-    // add class correct
-    // attempting to add a class to the button i just clicked
     answerClicked.classList.add("correct");
-
-    // increase the score counter
     score++;
     scoreDisp.innerHTML = "Score: " + score;
   } else {
     answerClicked.classList.add("wrong");
     scoreDisp.innerHTML = "Score: " + score;
-
     count = count - 10;
   }
-  // console.log(score);
-  // scoreDisp.textContent = "Score:" + score;
-  // if first question start timer
 
-  // indexQuestions ++;
-  // create a next questoin button
   if (indexQuestions < questions.length - 1) {
     var newButton = document.createElement("BUTTON");
     newButton.innerHTML = "Next Question";
@@ -119,13 +104,14 @@ function confirmAnswer(answer, index) {
     indexQuestions++;
   } else {
     var newButton = document.createElement("BUTTON");
-    newButton.innerHTML = "High Score";
+    newButton.innerHTML = "Scoreboard";
     newButton.className = "btn btn-dark";
     highScoreButton.innerHTML = "";
     highScoreButton.append(newButton);
     timerDisp = count;
   }
 }
+console.log(answerClicked);
 
 nextButton.onclick = function () {
   pageLocked = false;
@@ -135,36 +121,57 @@ nextButton.onclick = function () {
   answer3Disp.textContent = questions[indexQuestions].a3;
   answer4Disp.textContent = questions[indexQuestions].a4;
   nextButton.innerHTML = "";
-  answer1Disp.classList.remove("correct", "wrong");
-  answer2Disp.classList.remove("correct", "wrong");
-  answer3Disp.classList.remove("correct", "wrong");
-  answer4Disp.classList.remove("correct", "wrong");
-  // answerClicked.classList.remove("correct", "wrong");
-  
-    if(indexQuestions === 1){
-            timer = setInterval(function () {
-            timerDisp.innerHTML = "Timer: " + count--;
-                if (count == 1) clearInterval(timer);
-            }, 1000);
-        }
+  answerClicked.classList.remove("correct", "wrong");
+
+  if (indexQuestions === 1) {
+    timer = setInterval(function () {
+      timerDisp.innerHTML = "Timer: " + count--;
+      if (count == 1) clearInterval(timer);
+    }, 1000);
+  }
 };
 var intials = "";
+var input = document.createElement("div");
+var LeaderboardTitle = document.createElement("h3");
+var localScores = JSON.parse(localStorage.getItem(scoreArray));
+
 highScoreButton.onclick = function () {
   intials = prompt("Enter your intials to be added to the leader board");
-  everything.textContent = "";
-  timerDisp.textContent = count;
-
+  createHighscoreDisplay();
 };
 
+function createHighscoreDisplay() {
+  var scoreOutput = "Your Score: " + score + " Time remaining: " + count + " --- " + intials;
+  console.log(scoreOutput);
+  everything.textContent = "";
+  scoreDisp.textContent = "";
+  highScoreButton.textContent = "";
+  everything.appendChild(LeaderboardTitle);
+  LeaderboardTitle.setAttribute("class", "text-center mt-3 mb-3");
+  LeaderboardTitle.textContent = "Leaderboard";
+  scoreArray.concat(scoreOutput);
+  localStorage.setItem("scoreArray", JSON.stringify(scoreOutput));
+  scoreArray = scoreArray.push(JSON.parse(localStorage.getItem("scoreArray"))) || [];
+  console.log(scoreArray);
 
-
-
+  for (let index = 0; index < 5; index++) {
+    var div = document.createElement("div");
+    div.innerHTML = scoreArray[index];
+    div.setAttribute("class", "container-fluid mx-auto")
+    everything.appendChild(div);
+  }
+  var newButton = document.createElement("BUTTON");
+  newButton.innerHTML = "New Quiz";
+  newButton.className = "btn btn-dark";
+  newGameButton.innerHTML = "";
+  newGameButton.append(newButton);
+}
 // create content for questions and answers
 // DONE create functions to popluate questions and answers
 // DONE creat functions/event listeners to watch for answer clicks
 // DONE create functions to manipulate BG of cards to show correct or incorrect answer
 // DONE create function to update score display
 // DONE create button to move to next question and reset car BG to default
-// once all questions are answered create score list that shows user scores from all previous attempts
 //  DONE create timer that starts on start click
-// create stop function for timer
+//  DONE create stop function for timer
+// once all questions are answered create score list that shows user scores from all previous attempts

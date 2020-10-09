@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <title>Title</title>
+    <title>JS Quiz</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -15,18 +15,17 @@
       
     <nav class="navbar navbar-dark bg-dark">
         <div class="navbar-brand" href="#">
-          <img src="assests/JavaScript-logo.png" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
+          <img src="assests/JavaScript-logo.png" width="30" height="30" class="d-inline-block align-top" alt="JavaScript logo" loading="lazy">
           <div class="navbar-brand">
             JavaScript Quiz
           </div>
-          <div class="navbar-brand" id="timer">
-            Timer: 60
-          </div>
+          <div class="navbar-brand" id="timer"></div>
         </div>
 
     </nav>
 <!-- the main format for the quiz with a question block and four answers. -->
-    <main class="container bg-color" id="everything">
+    <main class="container bg-color">
+      <div id="everything">
         <div class="row">
             <h3 class="col mt-3" id="question">
                 Welcome to the JavaScrip quiz please read all of the instructions and have fun!
@@ -56,10 +55,12 @@
                 </div>
               </div>
         </div>
+      </div>
             <div class="row mt-3">
                 <p class="col" id="score"></p>
                 <div id="next-button"class="mr-5"></div>
                 <div id="high-score" class="mr-5"></div>
+                <a id="new-game" class="mr-5" href="index.html"></a>
         </div>
         <br>
 
