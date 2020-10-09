@@ -9,7 +9,7 @@ var highScoreButton = document.getElementById("high-score");
 var score = 0;
 var indexQuestions = 0;
 var timer = 0;
-var answersEl = [ answer1Disp, answer2Disp, answer3Disp, answer4Disp];
+// var answersEl = [ answer1Disp, answer2Disp, answer3Disp, answer4Disp];
 var questions = [
     {
         q: "Welcome to this JavaScrip quiz please read all of the instructions and have fun!",
@@ -58,27 +58,28 @@ var questions = [
     }
 ];
 
-
+// var answerClicked = "";
 
 answer1Disp.onclick = function(){
-    console.log(event.target)
-    confirmAnswer("a1", indexQuestions);
+    console.log(event.target);
     answerClicked = answer1Disp;
+    confirmAnswer("a1", indexQuestions);
 };
 answer2Disp.onclick = function(){
-    console.log(event.target)
-    confirmAnswer("a2", indexQuestions);
+    console.log(event.target);
     answerClicked = answer2Disp;
+    confirmAnswer("a2", indexQuestions);
 };
 answer3Disp.onclick = function(){
-    console.log(event.target)
-    confirmAnswer("a3", indexQuestions);
+    console.log(event.target);
     answerClicked = answer3Disp;
+    confirmAnswer("a3", indexQuestions);
 };
 answer4Disp.onclick = function(){
-    console.log(event.target)
-    confirmAnswer("a4", indexQuestions);
+    console.log(event.target);
     answerClicked = answer4Disp;
+    console.log(answerClicked);
+    confirmAnswer("a4", indexQuestions);
 };
 
 
@@ -89,16 +90,17 @@ function confirmAnswer(answer, index) {
         // if true we change the background color to green
         // add class correct 
         // attempting to add a class to the button i just clicked
-        answerClicked.classList.add(correct);
+        answerClicked.classList.add("correct");
         
         // increase the score counter
         score ++;
         scoreDisp.innerHTML =  "Score: " + score;     
     }
     else{
-        answerClicked.classList.add(wrong);
-        // if false change to red decrease timer
-        // add class inccorect
+        answerClicked.classList.add("wrong");
+        scoreDisp.innerHTML = "Score: " + score;
+       
+       
         // decrease timer        
     }
     // console.log(score);
@@ -115,6 +117,7 @@ function confirmAnswer(answer, index) {
     nextButton.innerHTML = "";
     nextButton.append(newButton);
     indexQuestions ++;
+   
     }
     else{
     var newButton = document.createElement("BUTTON");
@@ -133,6 +136,7 @@ nextButton.onclick = function(){
     answer3Disp.textContent = questions[indexQuestions].a3;
     answer4Disp.textContent = questions[indexQuestions].a4;
     nextButton.innerHTML = "";
+    answerClicked.classList.remove("correct","wrong");
 };
 
 highScoreButton.onclick = function(){
