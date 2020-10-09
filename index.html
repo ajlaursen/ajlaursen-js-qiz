@@ -14,10 +14,10 @@
   <body>
       
     <nav class="navbar navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">
+        <div class="navbar-brand" href="#">
           <img src="assests/JavaScript-logo.png" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
           JavaScript Quiz
-        </a>
+        </div>
     </nav>
 <!-- the main format for the quiz with a question block and four answers. -->
     <main class="container bg-color ">
@@ -26,26 +26,25 @@
                 Welcome to this JavaScrip quiz please read all of the instructions and have fun!
             </h3>
         </div>
-        <div class="row mt-3">
-          
-            <div class="card mx-auto" style="width: 18rem; ">
+        <div class="row mt-3">          
+              <div class="card mx-auto mt-3" style="width: 18rem; ">
                 <div class="card-body" id="answer-1">
                   <p class="card-text">In this quiz you will be asked multiple questions to test your knowledge of JavaScript</p>
                 </div>
               </div>
-              <div class="card mx-auto" style="width: 18rem;">
+              <div class="card mx-auto mt-3" style="width: 18rem;">
                 <div class="card-body" id="answer-2">
                   <p class="card-text">This quiz will track you score in the bottom left hand corner</p>
                 </div>
               </div>
         </div>
-        <div class="row mt-3">
-            <div class="card mx-auto" style="width: 18rem;">
+        <div class="row">
+            <div class="card mx-auto mt-3" style="width: 18rem;">
                 <div class="card-body" id="answer-3">
                   <p class="card-text">Your score will be tracked to a leader board so you can come back and see your improvement</p>
                 </div>
               </div>
-              <div class="card mx-auto" style="width: 18rem;">
+              <div class="card mx-auto mt-3" style="width: 18rem;">
                 <div class="card-body" id="answer-4">
                   <p class="card-text">When you are ready click this box to proceed!</p>
                 </div>
@@ -53,8 +52,8 @@
         </div>
             <div class="row mt-3">
                 <p class="col" id="score"></p>
-                <div id="next-button"></div>
-                <div id="high-score"></div>
+                <div id="next-button"class="mr-5"></div>
+                <div id="high-score" class="mr-5"></div>
         </div>
         <br>
 

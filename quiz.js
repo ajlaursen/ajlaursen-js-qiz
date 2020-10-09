@@ -61,19 +61,19 @@ var questions = [
 
 answer1Disp.onclick = function(){
     console.log(event.target)
-    confirmAnswer(questions[indexQuestions].a1, indexQuestions);
+    confirmAnswer("a1", indexQuestions);
 };
 answer2Disp.onclick = function(){
     console.log(event.target)
-    confirmAnswer(questions[indexQuestions].a2, indexQuestions);
+    confirmAnswer("a2", indexQuestions);
 };
 answer3Disp.onclick = function(){
     console.log(event.target)
-    confirmAnswer(questions[indexQuestions].a3, indexQuestions);
+    confirmAnswer("a3", indexQuestions);
 };
 answer4Disp.onclick = function(){
     console.log(event.target)
-    confirmAnswer(questions[indexQuestions].a4, indexQuestions);
+    confirmAnswer("a4", indexQuestions);
 };
 
 
@@ -83,28 +83,32 @@ function confirmAnswer(answer, index) {
     if (isCorrrect === true){
         // if true we change the background color to green
         // add class correct 
+        // attempting to add a class to the button i just clicked
+        
+        
         // increase the score counter
         score ++;
-        
+        scoreDisp.innerHTML =  "Score: " + score;     
     }
     else{
         // if false change to red decrease timer
         // add class inccorect
         // decrease timer        
     }
-    console.log(score);
-    scoreDisp.textContent = "Score:" + score;
+    // console.log(score);
+    // scoreDisp.textContent = "Score:" + score;
     // if first question start timer
 
 
-    indexQuestions ++;
+    // indexQuestions ++;
     // create a next questoin button
-    if (indexQuestions < questions.length){
+    if (indexQuestions < questions.length - 1){
     var newButton = document.createElement("BUTTON");
     newButton.innerHTML = "Next Question";
     newButton.className = "btn btn-dark";
     nextButton.innerHTML = "";
     nextButton.append(newButton);
+    indexQuestions ++;
     }
     else{
     var newButton = document.createElement("BUTTON");
@@ -116,6 +120,7 @@ function confirmAnswer(answer, index) {
 };
 
 nextButton.onclick = function(){
+    
     questionDisp.textContent = questions[indexQuestions].q;
     answer1Disp.textContent = questions[indexQuestions].a1;
     answer2Disp.textContent = questions[indexQuestions].a2;
