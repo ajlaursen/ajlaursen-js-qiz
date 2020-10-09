@@ -6,6 +6,7 @@ var answer4Disp = document.getElementById("answer-4");
 var scoreDisp = document.getElementById("score");
 var nextButton = document.getElementById("next-button");
 var highScoreButton = document.getElementById("high-score");
+var everything = document.getElementById("everything")
 var score = 0;
 var indexQuestions = 0;
 var timer = 0;
@@ -58,7 +59,7 @@ var questions = [
     }
 ];
 
-// var answerClicked = "";
+
 
 answer1Disp.onclick = function(){
     console.log(event.target);
@@ -140,16 +141,18 @@ nextButton.onclick = function(){
 };
 
 highScoreButton.onclick = function(){
+    everything.textContent = "";
     
+
 }
 
 
 
 // create content for questions and answers
-// create functions to popluate questions and answers
-// creat functions/event listeners to watch for answer clicks
-// create functions to manipulate BG of cards to show correct or incorrect answer
-// create function to update score display
-// create button to move to next question and reset car BG to default
+// DONE create functions to popluate questions and answers
+// DONE creat functions/event listeners to watch for answer clicks
+// DONE create functions to manipulate BG of cards to show correct or incorrect answer
+// DONE create function to update score display
+// DONE create button to move to next question and reset car BG to default
 // once all questions are answered create score list that shows user scores from all previous attempts
 // create timer that starts on start click
