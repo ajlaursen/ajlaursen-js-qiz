@@ -59,21 +59,26 @@ var questions = [
 ];
 
 
+
 answer1Disp.onclick = function(){
     console.log(event.target)
     confirmAnswer("a1", indexQuestions);
+    answerClicked = answer1Disp;
 };
 answer2Disp.onclick = function(){
     console.log(event.target)
     confirmAnswer("a2", indexQuestions);
+    answerClicked = answer2Disp;
 };
 answer3Disp.onclick = function(){
     console.log(event.target)
     confirmAnswer("a3", indexQuestions);
+    answerClicked = answer3Disp;
 };
 answer4Disp.onclick = function(){
     console.log(event.target)
     confirmAnswer("a4", indexQuestions);
+    answerClicked = answer4Disp;
 };
 
 
@@ -84,13 +89,14 @@ function confirmAnswer(answer, index) {
         // if true we change the background color to green
         // add class correct 
         // attempting to add a class to the button i just clicked
-        
+        answerClicked.classList.add(correct);
         
         // increase the score counter
         score ++;
         scoreDisp.innerHTML =  "Score: " + score;     
     }
     else{
+        answerClicked.classList.add(wrong);
         // if false change to red decrease timer
         // add class inccorect
         // decrease timer        
