@@ -169,12 +169,12 @@ function createHighscoreDisplay() {
   newGameButton.innerHTML = "";
   newGameButton.append(newButton);
 }
-// create content for questions and answers
+// DONEISH create content for questions and answers
 // DONE create functions to popluate questions and answers
 // DONE creat functions/event listeners to watch for answer clicks
 // DONE create functions to manipulate BG of cards to show correct or incorrect answer
 // DONE create function to update score display
 // DONE create button to move to next question and reset car BG to default
-//  DONE create timer that starts on start click
-//  DONE create stop function for timer
-// once all questions are answered create score list that shows user scores from all previous attempts
+// DONE create timer that starts on start click
+// DONE create stop function for timer
+// DONEonce all questions are answered create score list that shows user scores from all previous attempts
