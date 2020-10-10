@@ -133,8 +133,7 @@ nextButton.onclick = function () {
 var intials = "";
 var input = document.createElement("div");
 var LeaderboardTitle = document.createElement("h3");
-var localScores = JSON.parse(localStorage.getItem(scoreArray));
-var scoreArrayStored = [];
+// var scoreArrayStored= [];
 
 highScoreButton.onclick = function () {
   intials = prompt("Enter your name to be added to the leader board");
@@ -142,28 +141,51 @@ highScoreButton.onclick = function () {
 };
 
 function createHighscoreDisplay() {
-  var scoreOutput = intials + "\'s score: " + score + " Time remaining: " + count;
+  var scoreArrayStored= [];
+  //var scoreOutput = intials + "\'s score: " + score + " Time remaining: " + count;
+
+  var scoreOutput =
+  {
+    intials: intials,
+    score: score,
+    count: count
+  }
+
   console.log(scoreOutput);
   everything.textContent = "";
   scoreDisp.textContent = "";
   highScoreButton.textContent = "";
+
   everything.appendChild(LeaderboardTitle);
   LeaderboardTitle.setAttribute("class", "text-center mt-3 mb-3");
   LeaderboardTitle.textContent = "Leaderboard";
-  scoreArrayStored = JSON.parse(localStorage.getItem("scoreArray")) || [];
-  scoreArray = scoreArrayStored;
-  scoreArray.push(scoreOutput);
-  localStorage.setItem("scoreArray", JSON.stringify(scoreArray));
-  scoreArray.splice(10);
-  console.log(scoreArray);
 
-  for (let index = 0;index < scoreArray.length; index++) {
+  scoreArrayStored = JSON.parse(localStorage.getItem("scoreArray")) || [];
+  console.log(scoreArrayStored);
+  //onsole.log(scoreArrayStored[0].intials);
+  
+  scoreArrayStored.push(scoreOutput);
+  localStorage.setItem("scoreArray", JSON.stringify(scoreArrayStored));
+  console.log(scoreArrayStored);
+
+  var sortedArray = scoreArrayStored.sort(function(a, b) {
+    return parseFloat(b.score) - parseFloat(a.score);
+});
+
+
+  var forLoopLength = 10;
+  if (sortedArray.length < 10){
+    forLoopLength = sortedArray.length
+  }
+  for (let index = 0;index < forLoopLength; index++) {
     var div = document.createElement("div");
-    div.innerHTML = scoreArray[index];
+
+    div.innerHTML = sortedArray[index].intials + " Score:" + sortedArray[index].score + " Time remaining: " + sortedArray[index].count;
     div.setAttribute("class", "container-fluid mx-auto")
     everything.appendChild(div);
   }
   var newButton = document.createElement("BUTTON");
+
   newButton.innerHTML = "New Quiz";
   newButton.className = "btn btn-dark";
   newGameButton.innerHTML = "";
