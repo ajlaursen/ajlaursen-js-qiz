@@ -134,14 +134,15 @@ var intials = "";
 var input = document.createElement("div");
 var LeaderboardTitle = document.createElement("h3");
 var localScores = JSON.parse(localStorage.getItem(scoreArray));
+var scoreArrayStored = [];
 
 highScoreButton.onclick = function () {
-  intials = prompt("Enter your intials to be added to the leader board");
+  intials = prompt("Enter your name to be added to the leader board");
   createHighscoreDisplay();
 };
 
 function createHighscoreDisplay() {
-  var scoreOutput = "Your Score: " + score + " Time remaining: " + count + " --- " + intials;
+  var scoreOutput = intials + "\'s score: " + score + " Time remaining: " + count;
   console.log(scoreOutput);
   everything.textContent = "";
   scoreDisp.textContent = "";
@@ -149,12 +150,14 @@ function createHighscoreDisplay() {
   everything.appendChild(LeaderboardTitle);
   LeaderboardTitle.setAttribute("class", "text-center mt-3 mb-3");
   LeaderboardTitle.textContent = "Leaderboard";
-  scoreArray.concat(scoreOutput);
-  localStorage.setItem("scoreArray", JSON.stringify(scoreOutput));
-  scoreArray = scoreArray.push(JSON.parse(localStorage.getItem("scoreArray"))) || [];
+  scoreArrayStored = JSON.parse(localStorage.getItem("scoreArray")) || [];
+  scoreArray = scoreArrayStored;
+  scoreArray.push(scoreOutput);
+  localStorage.setItem("scoreArray", JSON.stringify(scoreArray));
+  scoreArray.splice(10);
   console.log(scoreArray);
 
-  for (let index = 0; index < 5; index++) {
+  for (let index = 0;index < scoreArray.length; index++) {
     var div = document.createElement("div");
     div.innerHTML = scoreArray[index];
     div.setAttribute("class", "container-fluid mx-auto")
