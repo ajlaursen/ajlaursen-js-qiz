@@ -1,24 +1,31 @@
+
 # JS Quiz
-# homework-4-laursen
 
-* homework assignment 4 for UofU coding boot camp. JS quiz
+## Table of Contents
+[Description](#description)  
+[Installation](#Installation)  
+[Test](#Testing)  
+[Project Links](#live-Site-and-Repo)  
+[License](#License)  
+[Contributors](#Contributors)  
 
-* Live Site: https://ajlaursen.github.io/ajlaursen-js-qiz/
+## Description
+* Quiz built with JS using a use to teach design. This app uses HTML, CSS, Bootstrap, and Javascript
 
-* Repo: https://github.com/ajlaursen/ajlaursen-js-qiz
+## Installation
+* Use live link
 
-* this is a quiz application that has a updating high score board
+## Testing
+* No testing available
 
-* the design of the UI is based on Use to Teach tutorial design
+## Live Site and Repo
+* [live Site](https://ajlaursen.github.io/ajlaursen-js-qiz/)
+* [Repo](https://github.com/ajlaursen/ajlaursen-js-qiz)
 
-* the quiz has a dynamic timer that punishes incorrect answers
+## License
+* [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-* the leader board has a limit of ten users and orders them by highest score
-
-* Technologies used: HTML, CSS, Bootstrap, JS
+## Contributors
+* Contributor: [Alex Laursen](https://github.com/ajlaursen) Email: [contact@ajlaursen.codes](mailto:contact@ajlaursen.codes)
 
 ![screenshot](assests/img/screenshot.png)
-
-* Contact: Alex Laursen - Ajlaursen@aol.com
-
-* License: [License](LICENSE)
