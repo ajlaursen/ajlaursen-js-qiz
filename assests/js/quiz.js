@@ -78,12 +78,12 @@ answer4Disp.onclick = function () {
 
 function confirmAnswer(answer, index, clicked) {
   if (pageLocked === true) {
-    console.log("page is already locked. aborting");
+    
     return;
   }
   pageLocked = true;
   answerClicked = clicked;
-  console.log("page was not locked executing function");
+ 
   var isCorrrect = questions[index].correct === answer;
   if (isCorrrect === true) {
     answerClicked.classList.add("correct");
@@ -111,7 +111,7 @@ function confirmAnswer(answer, index, clicked) {
     timerDisp = count;
   }
 }
-console.log(answerClicked);
+
 
 nextButton.onclick = function () {
   pageLocked = false;
@@ -151,7 +151,7 @@ function createHighscoreDisplay() {
     count: count
   }
 
-  console.log(scoreOutput);
+  
   everything.textContent = "";
   scoreDisp.textContent = "";
   highScoreButton.textContent = "";
@@ -161,12 +161,12 @@ function createHighscoreDisplay() {
   LeaderboardTitle.textContent = "Leaderboard";
 
   scoreArrayStored = JSON.parse(localStorage.getItem("scoreArray")) || [];
-  console.log(scoreArrayStored);
-  //onsole.log(scoreArrayStored[0].intials);
+  
+  
   
   scoreArrayStored.push(scoreOutput);
   localStorage.setItem("scoreArray", JSON.stringify(scoreArrayStored));
-  console.log(scoreArrayStored);
+  
 
   var sortedArray = scoreArrayStored.sort(function(a, b) {
     return parseFloat(b.score) - parseFloat(a.score);
@@ -191,12 +191,3 @@ function createHighscoreDisplay() {
   newGameButton.innerHTML = "";
   newGameButton.append(newButton);
 }
-// DONEISH create content for questions and answers
-// DONE create functions to popluate questions and answers
-// DONE creat functions/event listeners to watch for answer clicks
-// DONE create functions to manipulate BG of cards to show correct or incorrect answer
-// DONE create function to update score display
-// DONE create button to move to next question and reset car BG to default
-// DONE create timer that starts on start click
-// DONE create stop function for timer
-// DONEonce all questions are answered create score list that shows user scores from all previous attempts
